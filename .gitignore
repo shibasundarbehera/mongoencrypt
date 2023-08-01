@@ -1,5 +1,7 @@
-# Ignore the bin folder
+# Ignore bin and obj folders
 bin/
+obj/
+Debug/
 
-# Ignore .DS_Store files
+# Ignore .DS_Store files (macOS)
 .DS_Store
