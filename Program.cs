@@ -62,11 +62,11 @@ encryptedFieldsMap.Add("ProductRnD.SecurityBooks", new BsonDocument()
                                 {
                                     { "path", "Price" },
                                     { "keyId", new BsonBinaryData(dataKey, GuidRepresentation.Standard) }
-                                } ,
+                                },
                                 new BsonDocument
                                 {
-                                    { "path", "Publisher" },
-                                    { "keyId", new BsonBinaryData(dataKey, GuidRepresentation.Standard) }
+                                   { "path", "Publisher" },
+                                   { "keyId", new BsonBinaryData(dataKey, GuidRepresentation.Standard) } 
                                 }
                             }
                         }
@@ -104,10 +104,10 @@ var database = client.GetDatabase("ProductRnD");
 
 var collection = database.GetCollection<Book>("SecurityBooks");
 
-collection.InsertOne(new Book("My new book46!", "Tweedle Dum", 46.90f,"Pearson"));
-//collection.InsertOne(new Book("My new book47!", "Tweedle Dum", 47.90f,"Ajanta"));
+collection.InsertOne(new Book("My new book50!", "Tweedle Dum", 56.90f,"Pearson"));
+collection.InsertOne(new Book("My new book51!", "Tweedle Dum", 47.90f,"Ajanta"));
 
-var filterDefinition = Builders<Book>.Filter.Gt("Price", 30);
+//var filterDefinition = Builders<Book>.Filter.Gt("Price", 30);
 //var result = collection.Find(filterDefinition).ToList();
 var result = collection.Find(FilterDefinition<Book>.Empty).ToList();
 Console.WriteLine(result.ToJson());
