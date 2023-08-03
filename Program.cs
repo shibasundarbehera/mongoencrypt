@@ -72,7 +72,31 @@ encryptedFieldsMap.Add("ProductRnD.SecurityBooks", new BsonDocument()
                         }
                     });
 
-                 
+ scemaMapValue.Add("ProductRnD.SecurityBooks",new BsonDocument(){
+            { "bsonType", "object" },
+            {
+                "encryptMetadata",
+                new BsonDocument("keyId", new BsonArray(new[] { new BsonBinaryData(dataKey, GuidRepresentation.Standard) }))
+            },
+            {
+                "properties",
+                new BsonDocument
+                {
+                    {
+                        "Publisher", new BsonDocument
+                        {
+                            {
+                                "encrypt", new BsonDocument
+                                {
+                                    { "bsonType", "string" },
+                                    { "algorithm", "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic" }
+                                }
+                            }
+                        }
+                    }
+                }
+           },
+});                
 
 //var ExtraOptions = new Dictionary<string, object>
             // {
@@ -104,8 +128,8 @@ var database = client.GetDatabase("ProductRnD");
 
 var collection = database.GetCollection<Book>("SecurityBooks");
 
-collection.InsertOne(new Book("My new book50!", "Tweedle Dum", 56.90f,"Pearson"));
-collection.InsertOne(new Book("My new book51!", "Tweedle Dum", 47.90f,"Ajanta"));
+//collection.InsertOne(new Book("My new book50!", "Tweedle Dum", 56.90f,"Pearson"));
+//collection.InsertOne(new Book("My new book51!", "Tweedle Dum", 47.90f,"Ajanta"));
 
 //var filterDefinition = Builders<Book>.Filter.Gt("Price", 30);
 //var result = collection.Find(filterDefinition).ToList();
